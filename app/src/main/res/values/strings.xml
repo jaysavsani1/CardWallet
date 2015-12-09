@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="app_name">CardWallet</string>
+    <string name="hello_world">Hello world!</string>
+    <string name="action_settings">Settings</string>
+    <string name="title_activity_home_page">HomePage</string>
+    <string name="title_activity_add_card">AddCard</string>
+
+
+    <string name="CreditCardNumberHelp"/>
+    <string name="ExpirationDateHelp">Expiration date (MM/YY)</string>
+    <string name="SecurityCodeHelp">Security code (CVV)</string>
+    <string name="ZipHelp">Zip code of billing address</string>
+
+</resources>

@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <color name="colorPrimary">#51A999</color>
+    <color name="colorPressed">#3F9687</color>
+    <color name="colorRipple">#348C7C</color>
+
+    <color name="text_helper_color">#a8a8a8</color>
+</resources>
