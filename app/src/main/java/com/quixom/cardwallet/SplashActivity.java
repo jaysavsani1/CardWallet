@@ -5,7 +5,7 @@ import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 
 
-public class Splash extends AppCompatActivity {
+public class SplashActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -17,7 +17,7 @@ public class Splash extends AppCompatActivity {
             public void run() {
                 try {
                     Thread.sleep(500);
-                    Intent intent = new Intent(Splash.this, HomePage.class);
+                    Intent intent = new Intent(SplashActivity.this, ListOfCardsActivity.class);
                     startActivity(intent);
                 } catch (InterruptedException e) {
                     e.printStackTrace();

@@ -14,7 +14,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 
-public class HomePage extends AppCompatActivity implements View.OnClickListener {
+public class ListOfCardsActivity extends AppCompatActivity implements View.OnClickListener {
 
     FloatingActionButton fab1, fab2;
     private List<FloatingActionMenu> menus = new ArrayList<>();
@@ -58,10 +58,10 @@ public class HomePage extends AppCompatActivity implements View.OnClickListener 
                 text = fab2.getLabelText();
                 break;
         }
-        Intent intent = new Intent(HomePage.this, AddCard.class);
-        intent.putExtra("card_type", text);
+        Intent intent = new Intent(ListOfCardsActivity.this, AddNewCardActivity.class);
+        intent.putExtra("card_category", text);
         startActivity(intent);
 
-        Toast.makeText(HomePage.this, "selected   :  " + text, Toast.LENGTH_SHORT).show();
+        Toast.makeText(ListOfCardsActivity.this, "selected   :  " + text, Toast.LENGTH_SHORT).show();
     }
 }

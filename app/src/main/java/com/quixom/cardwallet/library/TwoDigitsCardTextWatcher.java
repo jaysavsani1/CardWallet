@@ -12,14 +12,13 @@ public class TwoDigitsCardTextWatcher implements TextWatcher {
     private static final String INITIAL_MONTH_ADD_ON = "0";
     private static final String DEFAULT_MONTH = "01";
     private static final String SPACE = "/";
-    String TAG = "CARDWALLET";
     private EditText mEditText;
     private int mLength;
 
 
     public TwoDigitsCardTextWatcher(EditText editText) {
         mEditText = editText;
-        Log.e(TAG, "mEditText: " + mEditText);
+
     }
 
     @Override
@@ -35,7 +34,6 @@ public class TwoDigitsCardTextWatcher implements TextWatcher {
     @Override
     public void afterTextChanged(Editable s) {
         int currentLength = mEditText.getText().length();
-        Log.e(TAG, "s : " + s);
         boolean ignoreBecauseIsDeleting = false;
         if (mLength > currentLength) {
             ignoreBecauseIsDeleting = true;

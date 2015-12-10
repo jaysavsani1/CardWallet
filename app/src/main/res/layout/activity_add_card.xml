@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/white"
     android:paddingBottom="@dimen/activity_vertical_margin"
     android:paddingLeft="@dimen/activity_horizontal_margin"
     android:paddingRight="@dimen/activity_horizontal_margin"
@@ -16,7 +17,8 @@
         android:layout_height="200dp"
         android:layout_gravity="center"
         android:background="@drawable/background_white"
-        card_view:cardCornerRadius="4dp">
+        card_view:cardCornerRadius="4dp"
+        card_view:cardElevation="2dp">
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -37,7 +39,7 @@
                     android:layout_height="0dip"
                     android:layout_weight="1"
                     android:gravity="center|left"
-                    android:text="CARD NO."></TextView>
+                    android:text="CARD NUMBER"></TextView>
 
                 <com.quixom.cardwallet.library.CreditCardForm
                     android:id="@+id/credit_card_form"
@@ -47,7 +49,9 @@
                     android:textSize="@dimen/text_size_hint"
                     app:include_helper="false"
                     app:include_zip="false"
-                    app:input_background="@drawable/background_border" />
+                    app:input_background="@drawable/background_border">
+
+                </com.quixom.cardwallet.library.CreditCardForm>
             </LinearLayout>
 
             <LinearLayout
@@ -65,14 +69,17 @@
                     android:text="NAME ON CARD"></TextView>
 
                 <EditText
+                    android:id="@+id/edit_text_name"
                     android:layout_width="match_parent"
                     android:layout_height="0dip"
                     android:layout_weight="1.5"
-                    android:paddingLeft="@dimen/card_view_padding"
-                    android:gravity="left|center_vertical"
                     android:background="@drawable/background_edittext"
+                    android:digits="abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ "
+                    android:gravity="left|center_vertical"
                     android:hint="YOUR NAME ON THE CARD"
+                    android:inputType="textCapCharacters"
                     android:maxLines="1"
+                    android:paddingLeft="@dimen/card_view_padding"
                     android:textSize="@dimen/text_size_hint"></EditText>
             </LinearLayout>
 
@@ -102,9 +109,11 @@
                         android:layout_width="match_parent"
                         android:layout_height="0dip"
                         android:layout_weight="1.5"
-                        android:paddingLeft="@dimen/card_view_padding"
                         android:background="@drawable/background_edittext"
                         android:hint="XX/YY"
+                        android:inputType="number"
+                        android:maxLength="5"
+                        android:paddingLeft="@dimen/card_view_padding"
                         android:textSize="@dimen/text_size_hint"></EditText>
                 </LinearLayout>
 
@@ -147,12 +156,15 @@
                         android:text="CVV"></TextView>
 
                     <EditText
+                        android:id="@+id/edit_text_cvv"
                         android:layout_width="match_parent"
                         android:layout_height="0dip"
                         android:layout_weight="1.5"
                         android:background="@drawable/background_edittext"
-                        android:paddingLeft="@dimen/card_view_padding"
                         android:hint="CVV"
+                        android:inputType="number"
+                        android:maxLength="3"
+                        android:paddingLeft="@dimen/card_view_padding"
                         android:textSize="@dimen/text_size_hint"></EditText>
                 </LinearLayout>
 
@@ -168,6 +180,9 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
-        android:text="SAVE" />
+        android:background="@color/colorPrimary"
+        android:text="SAVE"
+        android:textColor="@color/white"
+        android:textStyle="bold" />
 
 </RelativeLayout>
