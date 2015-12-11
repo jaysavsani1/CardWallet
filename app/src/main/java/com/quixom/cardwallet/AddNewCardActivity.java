@@ -45,6 +45,7 @@ public class AddNewCardActivity extends AppCompatActivity implements View.OnClic
         etName = (EditText) findViewById(R.id.edit_text_name);
         etCVV = (EditText) findViewById(R.id.edit_text_cvv);
         btnSave = (Button) findViewById(R.id.btn_save_card);
+        btnSave.setOnClickListener(this);
 
         Intent intent = getIntent();
         card_category = intent.getStringExtra("card_category");
@@ -58,7 +59,6 @@ public class AddNewCardActivity extends AppCompatActivity implements View.OnClic
         dbHelper = new DBHelper(this);
 
 
-
     }
 
     @Override
@@ -66,7 +66,7 @@ public class AddNewCardActivity extends AppCompatActivity implements View.OnClic
         switch (view.getId()) {
             case R.id.btn_save_card: {
                 Log.e(TAG, "............................................");
-                Log.e(TAG, "card caregory: " + card_category);
+                Log.e(TAG, "card caTegory: " + card_category);
                 Log.e(TAG, "card type : " + cardType);
                 Log.e(TAG, "card number : " + cardNumber);
                 Log.e(TAG, "card expiry date : " + etExpirtyDate.getText());
@@ -77,6 +77,8 @@ public class AddNewCardActivity extends AppCompatActivity implements View.OnClic
                 if (etExpirtyDate.length() <= 4)
                     etExpirtyDate.setError("Error");
 
+                dbHelper.setCard(card_category, cardType, cardNumber, etName.getText().toString(), etExpirtyDate.getText().toString(), etCVV.getText().toString());
+                dbHelper.getCard();
                 break;
             }
         }
