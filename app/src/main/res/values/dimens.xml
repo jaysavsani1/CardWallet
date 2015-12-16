@@ -8,4 +8,7 @@
     <dimen name="text_size_hint">14sp</dimen>
 
     <dimen name="edit_text_hint_margin_left">10dp</dimen>
+
+    <dimen name="text_size_bank_title">22sp</dimen>
+    <dimen name="text_size_bank_card_category">16sp</dimen>
 </resources>
