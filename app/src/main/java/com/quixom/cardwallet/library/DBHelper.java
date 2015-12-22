@@ -21,15 +21,11 @@ public class DBHelper extends SQLiteAssetHelper {
     private static final int DATABASE_VERSION = 1;
     Context mContext;
     String TAG = "CARDWALLET";
-    ProgressDialog progressDialog;
     AesCbcWithIntegrity.SecretKeys keys;
 
     public DBHelper(Context context) {
         super(context, DATABASE_NAME, null, DATABASE_VERSION);
         this.mContext = context;
-        progressDialog = new ProgressDialog(mContext);
-        progressDialog.setMessage("Please wait , we're encrypting your data.");
-        progressDialog.setCancelable(false);
 
         try {
             keys = AesCbcWithIntegrity.generateKeyFromPassword("1097", "quixomtechnology");
@@ -41,7 +37,6 @@ public class DBHelper extends SQLiteAssetHelper {
     public void setCard(String category, String card_type, String number, String name, String expiry, String cvv) {
         SQLiteDatabase db = getWritableDatabase();
         ContentValues contentValues = new ContentValues();
-        progressDialog.show();
         try {
             AesCbcWithIntegrity.CipherTextIvMac cipherCategory = AesCbcWithIntegrity.encrypt(category, keys);
             AesCbcWithIntegrity.CipherTextIvMac cipherCardType = AesCbcWithIntegrity.encrypt(card_type, keys);
@@ -64,40 +59,11 @@ public class DBHelper extends SQLiteAssetHelper {
         db.insert("CardInformation", null, contentValues);
         db.close();
         Log.e(TAG, "new  card information added");
-        progressDialog.dismiss();
     }
 
-    public void getCard() {
+    public Cursor getCard() {
         SQLiteDatabase db = getReadableDatabase();
         Cursor cursor = db.rawQuery("SELECT * FROM CardInformation", null);
-        progressDialog.setMessage("Fetching card information");
-        progressDialog.show();
-        if (cursor.moveToFirst()) {
-            do {
-                AesCbcWithIntegrity.CipherTextIvMac category = new AesCbcWithIntegrity.CipherTextIvMac(cursor.getString(0));
-                AesCbcWithIntegrity.CipherTextIvMac cardType = new AesCbcWithIntegrity.CipherTextIvMac(cursor.getString(1));
-                AesCbcWithIntegrity.CipherTextIvMac number = new AesCbcWithIntegrity.CipherTextIvMac(cursor.getString(2));
-                AesCbcWithIntegrity.CipherTextIvMac name = new AesCbcWithIntegrity.CipherTextIvMac(cursor.getString(3));
-                AesCbcWithIntegrity.CipherTextIvMac expiry = new AesCbcWithIntegrity.CipherTextIvMac(cursor.getString(4));
-                AesCbcWithIntegrity.CipherTextIvMac cvv = new AesCbcWithIntegrity.CipherTextIvMac(cursor.getString(5));
-
-                try {
-                    Log.e(TAG, " category : " + AesCbcWithIntegrity.decryptString(category, keys));
-                    Log.e(TAG, " type : " + AesCbcWithIntegrity.decryptString(cardType, keys));
-                    Log.e(TAG, " number : " + AesCbcWithIntegrity.decryptString(number, keys));
-                    Log.e(TAG, " name : " + AesCbcWithIntegrity.decryptString(name, keys));
-                    Log.e(TAG, " expiry : " + AesCbcWithIntegrity.decryptString(expiry, keys));
-                    Log.e(TAG, " CVV : " + AesCbcWithIntegrity.decryptString(cvv, keys));
-                } catch (UnsupportedEncodingException e) {
-                    e.printStackTrace();
-                } catch (GeneralSecurityException e) {
-                    e.printStackTrace();
-                }
-
-            } while (cursor.moveToNext());
-        }
-        cursor.close();
-        db.close();
-        progressDialog.cancel();
+        return cursor;
     }
 }

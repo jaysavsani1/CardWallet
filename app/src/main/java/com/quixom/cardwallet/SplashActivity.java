@@ -1,6 +1,6 @@
 package com.quixom.cardwallet;
 
-import android.graphics.Typeface;
+import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
 import android.support.v7.app.AppCompatActivity;
@@ -10,41 +10,42 @@ import android.widget.TextView;
 import com.quixom.cardwallet.library.SecretTextView;
 
 
-public class SplashActivity extends AppCompatActivity implements View.OnClickListener {
+public class SplashActivity extends AppCompatActivity  {
 
-    SecretTextView secretTextView;
+//    SecretTextView secretTextView;
+    String TAG = "CARDWALLET";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.card_view_layout);
+        setContentView(R.layout.activity_splash);
 
-        TextView textView = (TextView) findViewById(R.id.cvl_tv_card_number);
-        Typeface tf = Typeface.createFromAsset(getAssets(), "cc.ttf");
+
+        /*Typeface tf = Typeface.createFromAsset(getAssets(), "cc.ttf");
         textView.setTypeface(tf);
 
         secretTextView = (SecretTextView) findViewById(R.id.cvl_tv_cvv);
         secretTextView.setText("CVV");
         secretTextView.setDuration(1100);
         secretTextView.setOnClickListener(this);
+        textView1.setOnClickListener(this);*/
 
 
-        /*new Thread(new Runnable() {
+        new Thread(new Runnable() {
             @Override
             public void run() {
                 try {
-                    Thread.sleep(50000);
+                    Thread.sleep(1000);
                     Intent intent = new Intent(SplashActivity.this, ListOfCardsActivity.class);
                     startActivity(intent);
                 } catch (InterruptedException e) {
                     e.printStackTrace();
                 }
             }
-        }).start();*/
+        }).start();
     }
 
-
-    @Override
+  /*  @Override
     public void onClick(View view) {
         switch (view.getId()) {
             case R.id.cvl_tv_cvv:
@@ -60,5 +61,7 @@ public class SplashActivity extends AppCompatActivity implements View.OnClickLis
                 }, 3000);
                 break;
         }
-    }
+    }*/
+
+
 }

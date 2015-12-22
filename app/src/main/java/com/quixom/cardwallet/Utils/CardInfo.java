@@ -4,7 +4,15 @@ package com.quixom.cardwallet.Utils;
  * Created by Admin on 11-Dec-15.
  */
 public class CardInfo {
-    String category, cardType, cardNumber, cardName, cardExpiry, cardCVV;
+    String bankName , category, cardType, cardNumber, cardName, cardExpiry, cardCVV;
+
+    public String getBankName() {
+        return bankName;
+    }
+
+    public void setBankName(String bankName) {
+        this.bankName = bankName;
+    }
 
     public String getCategory() {
         return category;

@@ -3,7 +3,6 @@ package com.quixom.cardwallet;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
-import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -58,27 +57,21 @@ public class AddNewCardActivity extends AppCompatActivity implements View.OnClic
 
         dbHelper = new DBHelper(this);
 
-
     }
 
     @Override
     public void onClick(View view) {
         switch (view.getId()) {
             case R.id.btn_save_card: {
-                Log.e(TAG, "............................................");
-                Log.e(TAG, "card caTegory: " + card_category);
-                Log.e(TAG, "card type : " + cardType);
-                Log.e(TAG, "card number : " + cardNumber);
-                Log.e(TAG, "card expiry date : " + etExpirtyDate.getText());
-                Log.e(TAG, "name on card : " + etName.getText());
-                Log.e(TAG, "CVV : " + etCVV.getText());
+
                 if (etCVV.getText().length() <= 2)
                     etCVV.setError("Error");
                 if (etExpirtyDate.length() <= 4)
                     etExpirtyDate.setError("Error");
 
                 dbHelper.setCard(card_category, cardType, cardNumber, etName.getText().toString(), etExpirtyDate.getText().toString(), etCVV.getText().toString());
-                dbHelper.getCard();
+                Intent intent = new Intent(AddNewCardActivity.this, ListOfCardsActivity.class);
+                startActivity(intent);
                 break;
             }
         }
