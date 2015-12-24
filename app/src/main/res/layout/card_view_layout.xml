@@ -10,11 +10,12 @@
         android:id="@+id/cvl_cv"
         android:layout_width="match_parent"
         android:layout_height="200dp"
-        android:background="@drawable/background_white">
+        android:background="@color/black">
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
+            android:background="@color/black"
             android:orientation="vertical"
             android:padding="7dp"
             android:weightSum="10">
@@ -45,6 +46,7 @@
                         android:layout_weight="1"
                         android:gravity="left|bottom"
                         android:text="ICICI Bank"
+                        android:textColor="@color/yellow"
                         android:textSize="@dimen/text_size_bank_title"
                         android:textStyle="bold" />
 
@@ -55,6 +57,7 @@
                         android:layout_weight="1"
                         android:gravity="left"
                         android:text="Debit Cards"
+                        android:textColor="@color/white"
                         android:textSize="@dimen/text_size_bank_card_category"
                         android:textStyle="italic" />
                 </LinearLayout>
@@ -98,11 +101,11 @@
                     android:layout_weight="2.8"
                     android:gravity="left|center"
                     android:shadowColor="@color/text_helper_color"
-                    android:shadowDx="3"
+                    android:shadowDx="1"
                     android:shadowDy="1"
-                    android:shadowRadius="5"
+                    android:shadowRadius="1"
                     android:text="4838  3413  6700  0518"
-                    android:textColor="@color/material_grey_600"
+                    android:textColor="@color/material_grey_300"
                     android:textSize="22sp"
                     android:textStyle="bold" />
             </LinearLayout>
@@ -134,12 +137,13 @@
                             android:layout_weight="0.3"></LinearLayout>
 
                         <TextView
-                            android:layout_marginRight="4dp"
                             android:layout_width="0dip"
                             android:layout_height="match_parent"
+                            android:layout_marginRight="4dp"
                             android:layout_weight="0.7"
                             android:gravity="center|right"
                             android:text="VALID\nTHRU"
+                            android:textColor="@color/material_grey_300"
                             android:textSize="10sp"
                             android:textStyle="bold" />
 
@@ -150,6 +154,7 @@
                             android:layout_weight="2"
                             android:gravity="left|center"
                             android:text="08/20"
+                            android:textColor="@color/material_grey_300"
                             android:textSize="18sp"
                             android:textStyle="bold" />
                     </LinearLayout>
@@ -173,6 +178,7 @@
                             android:layout_weight="2.7"
                             android:gravity="left|center"
                             android:text="JAYKUMAR SAVSANI"
+                            android:textColor="@color/material_grey_300"
                             android:textSize="20sp"
                             android:textStyle="bold" />
                     </LinearLayout>

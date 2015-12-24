@@ -24,10 +24,11 @@ import java.util.ArrayList;
  */
 public class CardAdapter extends RecyclerView.Adapter<CardAdapter.ViewHolder> {
 
-    Context mContext;
+    static Context mContext;
     ArrayList<CardInfo> cardInfoArrayList = new ArrayList<CardInfo>();
     String TAG = "CARDWALLET";
     private int lastPosition = -1;
+
 
     public CardAdapter(Context context, ArrayList<CardInfo> arrayList) {
         Log.e(TAG, "in Adapter");
@@ -44,7 +45,6 @@ public class CardAdapter extends RecyclerView.Adapter<CardAdapter.ViewHolder> {
 
     @Override
     public void onBindViewHolder(final ViewHolder viewHolder, int position) {
-        setAnimation(viewHolder.cardView, position);
         final CardInfo cardInfo = cardInfoArrayList.get(position);
         viewHolder.bankName.setText(cardInfo.getBankName());
         viewHolder.cardCategory.setText(cardInfo.getCategory());
@@ -74,14 +74,6 @@ public class CardAdapter extends RecyclerView.Adapter<CardAdapter.ViewHolder> {
         });
     }
 
-    private void setAnimation(View viewToAnimate, int position) {
-        if (position > lastPosition)
-        {
-            Animation animation = AnimationUtils.loadAnimation(mContext, android.R.anim.slide_out_right);
-            viewToAnimate.startAnimation(animation);
-            lastPosition = position;
-        }
-    }
 
     private void setCardTypeImage(String cardType, ViewHolder viewHolder) {
         Log.e(TAG, "card type : " + cardType);
@@ -111,6 +103,7 @@ public class CardAdapter extends RecyclerView.Adapter<CardAdapter.ViewHolder> {
         SecretTextView cvv;
         ImageView cardType;
         CardView cardView;
+        Animation openCVV;
 
         public ViewHolder(View itemView) {
             super(itemView);
@@ -121,7 +114,10 @@ public class CardAdapter extends RecyclerView.Adapter<CardAdapter.ViewHolder> {
             cardName = (TextView) itemView.findViewById(R.id.cvl_tv_cardname);
             cvv = (SecretTextView) itemView.findViewById(R.id.cvl_tv_cvv);
             cardType = (ImageView) itemView.findViewById(R.id.cvl_iv_cardtype);
-            cardView = (CardView)itemView.findViewById(R.id.cvl_cv);
+            cardView = (CardView) itemView.findViewById(R.id.cvl_cv);
+            openCVV = AnimationUtils.loadAnimation(mContext, R.anim.open);
+            cvv.startAnimation(openCVV);
         }
     }
+
 }

@@ -4,6 +4,7 @@
     <color name="colorPrimary">#51A999</color>
     <color name="colorPressed">#3F9687</color>
     <color name="colorRipple">#348C7C</color>
+    <color name="colorPrimaryBright">#ff67ddcd</color>
 
     <color name="text_helper_color">#a8a8a8</color>
     <color name="white">#ffe4e4e4</color>
@@ -12,4 +13,7 @@
     <color name="maroon">#B03060</color>
     <color name="grey">#ffa2a2a2</color>
     <color name="black">#000000</color>
+    <color name="yellow">#FFF169</color>
+    <color name="name_grey">#ADADAD</color>
+    <color name="white_300">#ffd5d5d5</color>
 </resources>

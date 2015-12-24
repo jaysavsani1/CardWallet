@@ -16,6 +16,7 @@ import com.github.clans.fab.FloatingActionButton;
 import com.github.clans.fab.FloatingActionMenu;
 import com.quixom.cardwallet.Utils.CardAdapter;
 import com.quixom.cardwallet.Utils.CardInfo;
+import com.quixom.cardwallet.Utils.MyRecyclerView;
 import com.quixom.cardwallet.library.AesCbcWithIntegrity;
 import com.quixom.cardwallet.library.DBHelper;
 
@@ -28,7 +29,7 @@ import java.util.List;
 public class ListOfCardsActivity extends AppCompatActivity implements View.OnClickListener {
 
     FloatingActionButton fab1, fab2;
-    RecyclerView recyclerView;
+    MyRecyclerView recyclerView;
     RecyclerView.LayoutManager mLayoutManager;
     DBHelper dbHelper;
     String TAG = "CARDWALLET";
@@ -68,7 +69,7 @@ public class ListOfCardsActivity extends AppCompatActivity implements View.OnCli
             }, delay);
         }
 
-        recyclerView = (RecyclerView) findViewById(R.id.ahp_recyclervew);
+        recyclerView = (MyRecyclerView) findViewById(R.id.ahp_recyclervew);
         recyclerView.setHasFixedSize(true);
         recyclerView.setLayoutManager(mLayoutManager);
         fetchCardInformation();

@@ -3,15 +3,15 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/white"
     tools:context="com.quixom.cardwallet.ListOfCardsActivity">
 
-    <android.support.v7.widget.RecyclerView
+    <com.quixom.cardwallet.Utils.MyRecyclerView
         android:id="@+id/ahp_recyclervew"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-       >
+        android:layout_height="match_parent">
 
-    </android.support.v7.widget.RecyclerView>
+    </com.quixom.cardwallet.Utils.MyRecyclerView>
 
     <com.github.clans.fab.FloatingActionMenu
         android:id="@+id/menu_label"

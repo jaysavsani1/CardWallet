@@ -25,10 +25,8 @@ public class AddNewCardActivity extends AppCompatActivity implements View.OnClic
     CardValidCallback cardValidCallback = new CardValidCallback() {
         @Override
         public void cardValid(CreditCard card) {
-
             cardNumber = card.getCardNumber();
             cardType = card.getCardType().toString();
-
             Toast.makeText(AddNewCardActivity.this, "Card valid and complete", Toast.LENGTH_SHORT).show();
         }
     };
