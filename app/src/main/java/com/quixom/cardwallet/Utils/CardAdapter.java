@@ -3,6 +3,8 @@ package com.quixom.cardwallet.Utils;
 import android.content.Context;
 import android.graphics.Typeface;
 import android.os.Handler;
+import android.support.design.widget.Snackbar;
+import android.support.v4.content.ContextCompat;
 import android.support.v7.widget.CardView;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
@@ -13,6 +15,7 @@ import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.quixom.cardwallet.R;
 import com.quixom.cardwallet.library.SecretTextView;
@@ -57,6 +60,22 @@ public class CardAdapter extends RecyclerView.Adapter<CardAdapter.ViewHolder> {
         setCardTypeImage(cardInfo.getCardType(), viewHolder);
         viewHolder.cvv.setText("CVV");
         viewHolder.cvv.setDuration(1100);
+        viewHolder.cardNumber.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Animation jumpAnimation = AnimationUtils.loadAnimation(mContext, R.anim.textview_click);
+                view.startAnimation(jumpAnimation);
+                Toast.makeText(mContext , "Number copied" , Toast.LENGTH_SHORT).show();
+            }
+        });
+        viewHolder.cardName.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Animation jumpAnimation = AnimationUtils.loadAnimation(mContext, R.anim.textview_click);
+                view.startAnimation(jumpAnimation);
+                Toast.makeText(mContext , "Name copied" , Toast.LENGTH_SHORT).show();
+            }
+        });
         viewHolder.cvv.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {

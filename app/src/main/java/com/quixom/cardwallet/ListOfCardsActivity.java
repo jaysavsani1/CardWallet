@@ -8,9 +8,7 @@ import android.os.Handler;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.util.Log;
 import android.view.View;
-import android.widget.Toast;
 
 import com.github.clans.fab.FloatingActionButton;
 import com.github.clans.fab.FloatingActionMenu;
@@ -31,9 +29,9 @@ public class ListOfCardsActivity extends AppCompatActivity implements View.OnCli
     FloatingActionButton fab1, fab2;
     MyRecyclerView recyclerView;
     RecyclerView.LayoutManager mLayoutManager;
-    DBHelper dbHelper;
+
     String TAG = "CARDWALLET";
-    AesCbcWithIntegrity.SecretKeys keys;
+
     ProgressDialog progressDialog;
     ArrayList<CardInfo> cardInfoArrayList;
     private List<FloatingActionMenu> menus = new ArrayList<>();
@@ -56,10 +54,10 @@ public class ListOfCardsActivity extends AppCompatActivity implements View.OnCli
         fab2 = (FloatingActionButton) findViewById(R.id.fab_mini_2);
         fab1.setOnClickListener(this);
         fab2.setOnClickListener(this);
-        FloatingActionMenu menuLabels = (FloatingActionMenu) findViewById(R.id.menu_label);
+        final FloatingActionMenu menuLabels = (FloatingActionMenu) findViewById(R.id.menu_label);
         menus.add(menuLabels);
         menuLabels.hideMenuButton(false);
-        int delay = 600;
+        int delay = 5000;
         for (final FloatingActionMenu menu : menus) {
             mUiHandler.postDelayed(new Runnable() {
                 @Override
@@ -68,16 +66,18 @@ public class ListOfCardsActivity extends AppCompatActivity implements View.OnCli
                 }
             }, delay);
         }
-
         recyclerView = (MyRecyclerView) findViewById(R.id.ahp_recyclervew);
         recyclerView.setHasFixedSize(true);
         recyclerView.setLayoutManager(mLayoutManager);
+
+
         fetchCardInformation();
     }
 
     private void fetchCardInformation() {
         progressDialog.show();
-        dbHelper = new DBHelper(this);
+        DBHelper dbHelper = new DBHelper(this);
+        AesCbcWithIntegrity.SecretKeys keys = null;
         try {
             keys = AesCbcWithIntegrity.generateKeyFromPassword("1097", "quixomtechnology");
         } catch (GeneralSecurityException e) {
@@ -109,14 +109,11 @@ public class ListOfCardsActivity extends AppCompatActivity implements View.OnCli
                     cardInfo.setCardExpiry(cardExpiry);
                     cardInfo.setCardCVV(cvv);
                     cardInfoArrayList.add(cardInfo);
-                    Log.e(TAG, "Hello world :" + cardNumber);
 
                 } catch (UnsupportedEncodingException e) {
                     e.printStackTrace();
-                    Log.e(TAG, "UnsupportedEnconding");
                 } catch (GeneralSecurityException e) {
                     e.printStackTrace();
-                    Log.e(TAG, "general security");
                 }
             } while (cursor.moveToNext());
         }
@@ -141,6 +138,5 @@ public class ListOfCardsActivity extends AppCompatActivity implements View.OnCli
         Intent intent = new Intent(ListOfCardsActivity.this, AddNewCardActivity.class);
         intent.putExtra("card_category", text);
         startActivity(intent);
-        Toast.makeText(ListOfCardsActivity.this, "selected   :  " + text, Toast.LENGTH_SHORT).show();
     }
 }

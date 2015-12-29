@@ -2,23 +2,20 @@ package com.quixom.cardwallet;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.os.Handler;
 import android.support.v7.app.AppCompatActivity;
-import android.view.View;
-import android.widget.TextView;
-
-import com.quixom.cardwallet.library.SecretTextView;
+import android.support.v7.widget.Toolbar;
 
 
-public class SplashActivity extends AppCompatActivity  {
+public class SplashActivity extends AppCompatActivity {
 
-//    SecretTextView secretTextView;
+    //    SecretTextView secretTextView;
     String TAG = "CARDWALLET";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_splash);
+
 
 
         /*Typeface tf = Typeface.createFromAsset(getAssets(), "cc.ttf");
@@ -35,7 +32,7 @@ public class SplashActivity extends AppCompatActivity  {
             @Override
             public void run() {
                 try {
-                    Thread.sleep(1000);
+                    Thread.sleep(500);
                     Intent intent = new Intent(SplashActivity.this, ListOfCardsActivity.class);
                     startActivity(intent);
                 } catch (InterruptedException e) {

@@ -1,10 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
-    <color name="colorPrimary">#51A999</color>
+    <color name="colorPrimary">#FF5722</color>
     <color name="colorPressed">#3F9687</color>
     <color name="colorRipple">#348C7C</color>
-    <color name="colorPrimaryBright">#ff67ddcd</color>
+    <color name="colorPrimaryBright">#f4511e</color>
+    <color name="colorPrimaryDark">#BF360C</color>
 
     <color name="text_helper_color">#a8a8a8</color>
     <color name="white">#ffe4e4e4</color>
@@ -16,4 +17,15 @@
     <color name="yellow">#FFF169</color>
     <color name="name_grey">#ADADAD</color>
     <color name="white_300">#ffd5d5d5</color>
+
+    <color name="black_start">#ff666666</color>
+    <color name="black_center">#ff777777</color>
+    <color name="black_end">#ff666666</color>
+
+    <color name="transparent">#00ffffff</color>
+    <color name="card_background">#b2000000</color>
+    <color name="snackbar_trasnparent">#96000000</color>
+
+    <color name="add_card_edit_text_background_solid">#ffababab</color>
+    <color name="add_card_edit_text_background_stroke">#96FF5722</color>
 </resources>

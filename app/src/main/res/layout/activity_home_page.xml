@@ -1,52 +1,20 @@
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:fab="http://schemas.android.com/apk/res-auto"
+<android.support.design.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/coordinatorlayout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/white"
+    android:background="@drawable/gradient_background"
     tools:context="com.quixom.cardwallet.ListOfCardsActivity">
+
 
     <com.quixom.cardwallet.Utils.MyRecyclerView
         android:id="@+id/ahp_recyclervew"
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        android:background="@color/transparent">
 
     </com.quixom.cardwallet.Utils.MyRecyclerView>
 
-    <com.github.clans.fab.FloatingActionMenu
-        android:id="@+id/menu_label"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_alignParentBottom="true"
-        android:paddingBottom="10dp"
-        android:paddingLeft="10dp"
-        android:paddingRight="10dp"
-        fab:menu_backgroundColor="#ccffffff"
-        fab:menu_colorNormal="@color/colorPrimary"
-        fab:menu_colorPressed="@color/colorPressed"
-        fab:menu_colorRipple="@color/colorRipple"
-        fab:menu_labels_ellipsize="end"
-        fab:menu_labels_position="left"
-        fab:menu_labels_singleLine="true">
+    <include layout="@layout/fab_layout"></include>
 
-        <com.github.clans.fab.FloatingActionButton
-            android:id="@+id/fab_mini_1"
-            style="@style/MenuButtonsSmallStyle"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:src="@drawable/ic_launcher"
-            fab:fab_label="Credit Card"
-            fab:fab_size="mini" />
-
-        <com.github.clans.fab.FloatingActionButton
-            android:id="@+id/fab_mini_2"
-            style="@style/MenuButtonsSmallStyle"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:src="@drawable/ic_launcher"
-            fab:fab_label="Debit Card"
-            fab:fab_size="mini" />
-
-    </com.github.clans.fab.FloatingActionMenu>
-
-</RelativeLayout>
+</android.support.design.widget.CoordinatorLayout>
