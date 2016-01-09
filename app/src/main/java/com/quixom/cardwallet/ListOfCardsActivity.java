@@ -8,6 +8,7 @@ import android.os.Handler;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.View;
 
 import com.github.clans.fab.FloatingActionButton;
@@ -69,8 +70,6 @@ public class ListOfCardsActivity extends AppCompatActivity implements View.OnCli
         recyclerView = (MyRecyclerView) findViewById(R.id.ahp_recyclervew);
         recyclerView.setHasFixedSize(true);
         recyclerView.setLayoutManager(mLayoutManager);
-
-
         fetchCardInformation();
     }
 
@@ -85,37 +84,42 @@ public class ListOfCardsActivity extends AppCompatActivity implements View.OnCli
         }
 
         Cursor cursor = dbHelper.getCard();
-        if (cursor.moveToFirst()) {
-            do {
-                AesCbcWithIntegrity.CipherTextIvMac categoryCipherText = new AesCbcWithIntegrity.CipherTextIvMac(cursor.getString(0));
-                AesCbcWithIntegrity.CipherTextIvMac cardTypeCipherText = new AesCbcWithIntegrity.CipherTextIvMac(cursor.getString(1));
-                AesCbcWithIntegrity.CipherTextIvMac numberCipherText = new AesCbcWithIntegrity.CipherTextIvMac(cursor.getString(2));
-                AesCbcWithIntegrity.CipherTextIvMac nameCipherText = new AesCbcWithIntegrity.CipherTextIvMac(cursor.getString(3));
-                AesCbcWithIntegrity.CipherTextIvMac expiryCipherText = new AesCbcWithIntegrity.CipherTextIvMac(cursor.getString(4));
-                AesCbcWithIntegrity.CipherTextIvMac cvvCipherText = new AesCbcWithIntegrity.CipherTextIvMac(cursor.getString(5));
-                try {
-                    CardInfo cardInfo = new CardInfo();
-                    String category = AesCbcWithIntegrity.decryptString(categoryCipherText, keys);
-                    String cardType = AesCbcWithIntegrity.decryptString(cardTypeCipherText, keys);
-                    String cardNumber = AesCbcWithIntegrity.decryptString(numberCipherText, keys);
-                    String cardName = AesCbcWithIntegrity.decryptString(nameCipherText, keys);
-                    String cardExpiry = AesCbcWithIntegrity.decryptString(expiryCipherText, keys);
-                    String cvv = AesCbcWithIntegrity.decryptString(cvvCipherText, keys);
-                    cardInfo.setBankName("ICICI Bank");
-                    cardInfo.setCategory(category);
-                    cardInfo.setCardType(cardType);
-                    cardInfo.setCardNumber(cardNumber);
-                    cardInfo.setCardName(cardName);
-                    cardInfo.setCardExpiry(cardExpiry);
-                    cardInfo.setCardCVV(cvv);
-                    cardInfoArrayList.add(cardInfo);
+        Log.e(TAG, "cursor count : " + cursor.getCount());
+        if (cursor.getCount() > 0) {
+            if (cursor.moveToFirst()) {
+                do {
+                    AesCbcWithIntegrity.CipherTextIvMac categoryCipherText = new AesCbcWithIntegrity.CipherTextIvMac(cursor.getString(0));
+                    AesCbcWithIntegrity.CipherTextIvMac cardTypeCipherText = new AesCbcWithIntegrity.CipherTextIvMac(cursor.getString(1));
+                    AesCbcWithIntegrity.CipherTextIvMac numberCipherText = new AesCbcWithIntegrity.CipherTextIvMac(cursor.getString(2));
+                    AesCbcWithIntegrity.CipherTextIvMac nameCipherText = new AesCbcWithIntegrity.CipherTextIvMac(cursor.getString(3));
+                    AesCbcWithIntegrity.CipherTextIvMac expiryCipherText = new AesCbcWithIntegrity.CipherTextIvMac(cursor.getString(4));
+                    AesCbcWithIntegrity.CipherTextIvMac cvvCipherText = new AesCbcWithIntegrity.CipherTextIvMac(cursor.getString(5));
+                    AesCbcWithIntegrity.CipherTextIvMac bankNameCipherText = new AesCbcWithIntegrity.CipherTextIvMac(cursor.getString(6));
+                    try {
+                        CardInfo cardInfo = new CardInfo();
+                        String category = AesCbcWithIntegrity.decryptString(categoryCipherText, keys);
+                        String cardType = AesCbcWithIntegrity.decryptString(cardTypeCipherText, keys);
+                        String cardNumber = AesCbcWithIntegrity.decryptString(numberCipherText, keys);
+                        String cardName = AesCbcWithIntegrity.decryptString(nameCipherText, keys);
+                        String cardExpiry = AesCbcWithIntegrity.decryptString(expiryCipherText, keys);
+                        String cvv = AesCbcWithIntegrity.decryptString(cvvCipherText, keys);
+                        String bankName = AesCbcWithIntegrity.decryptString(bankNameCipherText, keys);
+                        cardInfo.setBankName(bankName);
+                        cardInfo.setCategory(category);
+                        cardInfo.setCardType(cardType);
+                        cardInfo.setCardNumber(cardNumber);
+                        cardInfo.setCardName(cardName);
+                        cardInfo.setCardExpiry(cardExpiry);
+                        cardInfo.setCardCVV(cvv);
+                        cardInfoArrayList.add(cardInfo);
 
-                } catch (UnsupportedEncodingException e) {
-                    e.printStackTrace();
-                } catch (GeneralSecurityException e) {
-                    e.printStackTrace();
-                }
-            } while (cursor.moveToNext());
+                    } catch (UnsupportedEncodingException e) {
+                        e.printStackTrace();
+                    } catch (GeneralSecurityException e) {
+                        e.printStackTrace();
+                    }
+                } while (cursor.moveToNext());
+            }
         }
         cursor.close();
         CardAdapter cardAdapter = new CardAdapter(ListOfCardsActivity.this, cardInfoArrayList);

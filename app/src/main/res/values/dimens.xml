@@ -11,4 +11,6 @@
 
     <dimen name="text_size_bank_title">22sp</dimen>
     <dimen name="text_size_bank_card_category">16sp</dimen>
+
+    <dimen name="bank_name_margin_top">15dp</dimen>
 </resources>

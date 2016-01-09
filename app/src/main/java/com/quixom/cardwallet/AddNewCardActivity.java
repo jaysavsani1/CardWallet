@@ -6,7 +6,6 @@ import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.Toast;
 
 import com.quixom.cardwallet.library.CardValidCallback;
 import com.quixom.cardwallet.library.CreditCard;
@@ -19,7 +18,7 @@ public class AddNewCardActivity extends AppCompatActivity implements View.OnClic
 
     Button btnSave;
     String TAG = "CARDWALLET";
-    EditText etExpirtyDate, etName, etCVV;
+    EditText etExpirtyDate, etName, etCVV, etBankName;
     TwoDigitsCardTextWatcher twoDigitsCardTextWatcher;
     String cardNumber, cardType, cipherTextString, card_category;
     CardValidCallback cardValidCallback = new CardValidCallback() {
@@ -40,6 +39,7 @@ public class AddNewCardActivity extends AppCompatActivity implements View.OnClic
         etExpirtyDate = (EditText) findViewById(R.id.edit_text_expiry_date);
         etName = (EditText) findViewById(R.id.edit_text_name);
         etCVV = (EditText) findViewById(R.id.edit_text_cvv);
+        etBankName = (EditText) findViewById(R.id.add_card_bank_name);
         btnSave = (Button) findViewById(R.id.btn_save_card);
         btnSave.setOnClickListener(this);
 
@@ -65,8 +65,10 @@ public class AddNewCardActivity extends AppCompatActivity implements View.OnClic
                     etCVV.setError("Error");
                 if (etExpirtyDate.length() <= 4)
                     etExpirtyDate.setError("Error");
+                if (etBankName.length() <= 2)
+                    etBankName.setError("Error");
 
-                dbHelper.setCard(card_category, cardType, cardNumber, etName.getText().toString(), etExpirtyDate.getText().toString(), etCVV.getText().toString());
+                dbHelper.setCard(card_category, cardType, cardNumber, etName.getText().toString(), etExpirtyDate.getText().toString(), etCVV.getText().toString(), etBankName.getText().toString());
                 Intent intent = new Intent(AddNewCardActivity.this, ListOfCardsActivity.class);
                 startActivity(intent);
                 break;
