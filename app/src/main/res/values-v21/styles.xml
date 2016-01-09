@@ -1,0 +1,22 @@
+<resources>
+
+    <!-- Base application theme. -->
+    <style name="AppTheme" parent="Theme.AppCompat.Light.DarkActionBar">
+        <item name="colorPrimary">@color/colorPrimary</item>
+        <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
+        <item name="colorAccent">@color/colorRipple</item>
+        <item name="android:textColor">@color/black</item>
+        <!-- Customize your theme here. -->
+    </style>
+
+    <style name="MenuButtonsSmallStyle">
+        <item name="fab_colorNormal">@color/colorPrimary</item>
+        <item name="fab_colorPressed">@color/colorPressed</item>
+        <item name="fab_colorRipple">@color/colorRipple</item>
+    </style>
+
+    <style name="ButtonColor" parent="android:Widget.Button">
+        <item name="android:background">@drawable/custom_btn</item>
+    </style>
+
+</resources>
