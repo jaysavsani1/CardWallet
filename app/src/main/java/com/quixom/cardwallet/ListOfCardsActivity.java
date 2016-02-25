@@ -50,6 +50,7 @@ public class ListOfCardsActivity extends AppCompatActivity implements View.OnCli
         mLayoutManager = new LinearLayoutManager(this);
         cardInfoArrayList = new ArrayList<CardInfo>();
 
+
         //Floating button code
         fab1 = (FloatingActionButton) findViewById(R.id.fab_mini_1);
         fab2 = (FloatingActionButton) findViewById(R.id.fab_mini_2);
@@ -86,8 +87,10 @@ public class ListOfCardsActivity extends AppCompatActivity implements View.OnCli
         Cursor cursor = dbHelper.getCard();
         Log.e(TAG, "cursor count : " + cursor.getCount());
         if (cursor.getCount() > 0) {
+            Log.e(TAG, "total count : " + cursor.getColumnCount());
             if (cursor.moveToFirst()) {
                 do {
+
                     AesCbcWithIntegrity.CipherTextIvMac categoryCipherText = new AesCbcWithIntegrity.CipherTextIvMac(cursor.getString(0));
                     AesCbcWithIntegrity.CipherTextIvMac cardTypeCipherText = new AesCbcWithIntegrity.CipherTextIvMac(cursor.getString(1));
                     AesCbcWithIntegrity.CipherTextIvMac numberCipherText = new AesCbcWithIntegrity.CipherTextIvMac(cursor.getString(2));

@@ -11,10 +11,10 @@
     fab:fab_hideAnimation="@anim/fab_scale_down"
     fab:fab_showAnimation="@anim/fab_scale_up"
     fab:layout_behavior="com.quixom.cardwallet.Utils.FloatingActionMenuBehavior"
-    fab:menu_backgroundColor="#64ffffff"
+    fab:menu_backgroundColor="#c8000000"
     fab:menu_colorNormal="@color/colorPrimary"
-    fab:menu_colorPressed="@color/colorPressed"
-    fab:menu_colorRipple="@color/colorRipple"
+    fab:menu_colorPressed="@color/colorPrimary"
+    fab:menu_colorRipple="@color/colorPrimaryBright"
     fab:menu_labels_ellipsize="end"
     fab:menu_labels_position="left"
     fab:menu_labels_singleLine="true">
@@ -24,7 +24,7 @@
         style="@style/MenuButtonsSmallStyle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:src="@drawable/ic_launcher"
+        android:src="@drawable/indianrupee"
         fab:fab_label="Credit Card"
         fab:fab_size="mini" />
 
@@ -33,7 +33,7 @@
         style="@style/MenuButtonsSmallStyle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:src="@drawable/ic_launcher"
+        android:src="@drawable/indianrupee"
         fab:fab_label="Debit Card"
         fab:fab_size="mini" />
 

@@ -1,10 +1,9 @@
 package com.quixom.cardwallet.Utils;
 
 import android.content.Context;
+import android.content.res.Resources;
 import android.graphics.Typeface;
 import android.os.Handler;
-import android.support.design.widget.Snackbar;
-import android.support.v4.content.ContextCompat;
 import android.support.v7.widget.CardView;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
@@ -14,6 +13,7 @@ import android.view.ViewGroup;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -21,6 +21,7 @@ import com.quixom.cardwallet.R;
 import com.quixom.cardwallet.library.SecretTextView;
 
 import java.util.ArrayList;
+import java.util.Random;
 
 /**
  * Created by Admin on 21-Dec-15.
@@ -30,13 +31,15 @@ public class CardAdapter extends RecyclerView.Adapter<CardAdapter.ViewHolder> {
     static Context mContext;
     ArrayList<CardInfo> cardInfoArrayList = new ArrayList<CardInfo>();
     String TAG = "CARDWALLET";
+    Resources res;
     private int lastPosition = -1;
-
+    final Random random = new Random();
 
     public CardAdapter(Context context, ArrayList<CardInfo> arrayList) {
         Log.e(TAG, "in Adapter");
         this.mContext = context;
         this.cardInfoArrayList = arrayList;
+        res = mContext.getResources();
     }
 
     @Override
@@ -60,12 +63,14 @@ public class CardAdapter extends RecyclerView.Adapter<CardAdapter.ViewHolder> {
         setCardTypeImage(cardInfo.getCardType(), viewHolder);
         viewHolder.cvv.setText("CVV");
         viewHolder.cvv.setDuration(1100);
+
+
         viewHolder.cardNumber.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Animation jumpAnimation = AnimationUtils.loadAnimation(mContext, R.anim.textview_click);
                 view.startAnimation(jumpAnimation);
-                Toast.makeText(mContext , "Number copied" , Toast.LENGTH_SHORT).show();
+                Toast.makeText(mContext, "Number copied", Toast.LENGTH_SHORT).show();
             }
         });
         viewHolder.cardName.setOnClickListener(new View.OnClickListener() {
@@ -73,7 +78,7 @@ public class CardAdapter extends RecyclerView.Adapter<CardAdapter.ViewHolder> {
             public void onClick(View view) {
                 Animation jumpAnimation = AnimationUtils.loadAnimation(mContext, R.anim.textview_click);
                 view.startAnimation(jumpAnimation);
-                Toast.makeText(mContext , "Name copied" , Toast.LENGTH_SHORT).show();
+                Toast.makeText(mContext, "Name copied", Toast.LENGTH_SHORT).show();
             }
         });
         viewHolder.cvv.setOnClickListener(new View.OnClickListener() {
@@ -123,6 +128,7 @@ public class CardAdapter extends RecyclerView.Adapter<CardAdapter.ViewHolder> {
         ImageView cardType;
         CardView cardView;
         Animation openCVV;
+        LinearLayout linearLayout;
 
         public ViewHolder(View itemView) {
             super(itemView);
@@ -134,6 +140,7 @@ public class CardAdapter extends RecyclerView.Adapter<CardAdapter.ViewHolder> {
             cvv = (SecretTextView) itemView.findViewById(R.id.cvl_tv_cvv);
             cardType = (ImageView) itemView.findViewById(R.id.cvl_iv_cardtype);
             cardView = (CardView) itemView.findViewById(R.id.cvl_cv);
+            linearLayout = (LinearLayout) itemView.findViewById(R.id.cv_ll_bg);
             openCVV = AnimationUtils.loadAnimation(mContext, R.anim.open);
             cvv.startAnimation(openCVV);
         }
